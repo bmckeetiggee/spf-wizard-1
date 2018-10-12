@@ -8,15 +8,140 @@
     <title>SPF Wizard</title>
 
     <!-- Styles -->
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css" />
     <link rel="stylesheet" href="assets/style.css" />
 
 </head>
 
 <body>
 
+    <div class="section__spf-wizard">
+        <div class="container overlay--center">
+            <div class="row">
+                <div class="col">
+                    <h1>SPF Wizard</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8 ml-auto mr-auto">
+                    <div class="input__label no-margin">Copy and paste this:</div>
+                    <div class="grid__answer">
+                        <div id="answer" class="input__answer"></div>
+                        <button class="btn__submit" onClick="submitForm()">Submit</button>
+                    </div>
+                </div>
+            </div>
+            <div class="row margin-top-50">
+                <div class="col-md-8 ml-auto mr-auto">
+                    <form action="">
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="domain" placeholder="Your domain" value="" />
+                        </div>
+                        <div class="form-group">
+                            <div class="input__label">Should any servers listed as MX<a href="#" data-toggle="popover"
+                                    tabindex="0" data-trigger="focus" data-placement="top" data-content="Current handlers are: mx1.domain.com and mx2.domain.com"><i
+                                        class="fal fa-question-circle"></i></a> be able to send email for this
+                                domain? </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="MXServers" id="allowMXServers" value="yes" />
+                                <label class="form-check-label" for="allowMXServers">Yes <span>(recommended)</span></label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="MXServers" id="disallowMXServers"
+                                    value="no" />
+                                <label class="form-check-label" for="disallowMXServers">No</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input__label">Should any hostnames<a href="#" data-toggle="popover" tabindex="0"
+                                    data-trigger="focus" data-placement="top" data-content="This includes subdomains."><i
+                                        class="fal fa-question-circle"></i></a> ending in <span id="domainName"></span>
+                                be
+                                able to send email for this
+                                domain? </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="hostnames" id="disallowHostnames"
+                                    value="no" />
+                                <label class="form-check-label" for="disallowHostnames">No <span>(recommended)</span></label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="hostnames" id="allowHostnames" value="yes" />
+                                <label class="form-check-label" for="allowHostnames">Yes</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input__label">How strict should the servers be that handle the emails? </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="strict" id="strictFail" value="no" />
+                                <label class="form-check-label" for="strictFail">Fail <span>(Reject non-compliant
+                                        requests)</span></label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="strict" id="strictSoftFail" value="yes" />
+                                <label class="form-check-label" for="strictSoftFail">Soft Fail <span>(Accept, but not
+                                        mark non-compliant requests)</span></label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="strict" id="strictNeutral" value="yes" />
+                                <label class="form-check-label" for="strictNeutral">Neutral <span>(Mail will probably
+                                        accepted)</span></label>
+                            </div>
+                        </div>
+                        <div class="form__advanced-options">
+                            <div class="form__advanced-options__title">Advanced Options:</div>
+                            <div class="form-group">
+                                <label class="input__label" for="relayIPAddress">List any IP address(es)<a href="#"
+                                        data-toggle="popover" tabindex="0" data-trigger="focus" data-placement="top"
+                                        data-content="If you require more than one IP address, separate with a space. Make sure you include the subnet mask, ie: 127.0.0.1/32. "><i
+                                            class="fal fa-question-circle"></i></a>
+                                    authorized to
+                                    deliver or relay mail for
+                                    this domain: </label>
+                                <input type="text" class="form-control" id="relayIPAddress" placeholder="IP address(es) in CIDR format" />
+                            </div>
+                            <div class="form-group">
+                                <label class="input__label" for="relayHostnames">List any hostname(s)<a href="#"
+                                        data-toggle="popover" tabindex="0" data-trigger="focus" data-placement="top"
+                                        data-content="If you require more than one hostname, separate with a space. "><i
+                                            class="fal fa-question-circle"></i></a>
+                                    authorized to
+                                    deliver or relay mail for
+                                    this domain: </label>
+                                <input type="text" class="form-control" id="relayHostnames" placeholder="Hostname(s)" />
+                            </div>
+                            <div class="form-group">
+                                <label class="input__label" for="relayDomains">List any domain(s)<a href="#"
+                                        data-toggle="popover" tabindex="0" data-trigger="focus" data-placement="top"
+                                        data-content="If you require more than one domain, separate with a space. "><i
+                                            class="fal fa-question-circle"></i></a>
+                                    authorized to
+                                    deliver or relay mail for
+                                    your domain: </label>
+                                <input type="text" class="form-control" id="relayDomains" placeholder="Domain(s)" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Scripts -->
+    <script src="assets/jquery-3.1.1.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/font-awesome5/fontawesome.min.js"></script>
     <script src="assets/main.js"></script>
+
+    <script>
+        $(function () {
+            $('[data-toggle="popover"]').popover();
+            $('.popover-dismiss').popover({
+                trigger: 'focus'
+            })
+        })
+
+    </script>
+
 </body>
 
 </html>
