@@ -25,33 +25,38 @@
             <div class="row">
                 <div class="col-md-8 ml-auto mr-auto">
                     <div class="input__label no-margin">Copy and paste this:</div>
-                    <div class="grid__answer">
-                        <div id="answer" class="input__answer"></div>
-                        <button class="btn__submit" onClick="submitForm()">Submit</button>
-                    </div>
+                    <div id="answer" class="input__answer"></div>
                 </div>
             </div>
             <div class="row margin-top-50">
                 <div class="col-md-8 ml-auto mr-auto">
-                    <form action="">
+                    <form class="form__spf-wizard">
+
                         <div class="form-group">
-                            <input type="text" class="form-control" id="domain" placeholder="Your domain" value="" />
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="domain" placeholder="Your domain" value="" />
+                                <div class="input-group-append">
+                                    <button class="btn__submit" onClick="submitForm()">Submit</button>
+                                </div>
+                            </div>
                         </div>
+
                         <div class="form-group">
                             <div class="input__label">Should any servers listed as MX<a href="#" data-toggle="popover"
                                     tabindex="0" data-trigger="focus" data-placement="top" data-content="Current handlers are: mx1.domain.com and mx2.domain.com"><i
                                         class="fal fa-question-circle"></i></a> be able to send email for this
                                 domain? </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="MXServers" id="allowMXServers" value="yes" />
+                                <input class="form-check-input" type="radio" name="MXServers" id="allowMXServers" value="v=spf1 mx" />
                                 <label class="form-check-label" for="allowMXServers">Yes <span>(recommended)</span></label>
                             </div>
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio" name="MXServers" id="disallowMXServers"
-                                    value="no" />
+                                    value="v=spf1" />
                                 <label class="form-check-label" for="disallowMXServers">No</label>
                             </div>
                         </div>
+
                         <div class="form-group">
                             <div class="input__label">Should any hostnames<a href="#" data-toggle="popover" tabindex="0"
                                     data-trigger="focus" data-placement="top" data-content="This includes subdomains."><i

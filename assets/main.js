@@ -1,9 +1,19 @@
 const answer = document.getElementById("answer");
 const domain = document.getElementById("domain");
+const allowMXServers = document.getElementById("allowMXServers");
+const disallowMXServers = document.getElementById("disallowMXServers");
+const form = document.getElementsByClassName("form__spf-wizard");
+
+function getMXServersValue() {
+    if ((allowMXServers.checked = true)) {
+        // return allowMXServers.value;
+        console.log("it worked");
+        // else if ((disallowMXServers.checked = true)) {
+        //     return disallowMXServers.value;
+        // }
+    }
+}
 
 function submitForm() {
-    if (domain.value != undefined) {
-        answer.innerHTML = domain.value + "" + 'IN TXT "v=spf1"';
-    }
-    // answer.innerHTML = domain.value;
+    answer.innerHTML = domain.value + "." + " " + "IN TXT";
 }
