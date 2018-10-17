@@ -4,6 +4,12 @@ const allowMXServers = document.getElementById("allowMXServers");
 const disallowMXServers = document.getElementById("disallowMXServers");
 const form = document.getElementsByClassName("form__spf-wizard");
 
+$(document).ready(() => {
+    $('#relayIPAddress').keyup(() => {
+        console.log("WTF")
+    });
+})
+
 function getMXServersValue() {
     if ((allowMXServers.checked = true)) {
         // return allowMXServers.value;
