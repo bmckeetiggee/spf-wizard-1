@@ -44,12 +44,12 @@
                                         class="fal fa-question-circle"></i></a> be able to send email for this
                                 domain? </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="MXServers" id="allowMXServers" value="v=spf1 mx" />
+                                <input class="form-check-input" type="radio" name="MXServers" id="allowMXServers" value="yes" />
                                 <label class="form-check-label" for="allowMXServers">Yes <span>(recommended)</span></label>
                             </div>
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio" name="MXServers" id="disallowMXServers"
-                                    value="v=spf1" />
+                                    value="no" />
                                 <label class="form-check-label" for="disallowMXServers">No</label>
                             </div>
                         </div>
@@ -58,9 +58,7 @@
                             <div class="input__label">Should any hostnames<a href="#" data-toggle="popover" tabindex="0"
                                     data-trigger="focus" data-placement="top" data-content="This includes subdomains."><i
                                         class="fal fa-question-circle"></i></a> ending in <u id="domainName"></u>
-                                be
-                                able to send email for this
-                                domain? </div>
+                                be able to send email for this domain? </div>
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio" name="hostnames" id="disallowHostnames"
                                     value="no" />
@@ -95,10 +93,8 @@
                                 <label class="input__label" for="relayIPAddress">List any IP address(es)<a href="#"
                                         data-toggle="popover" tabindex="0" data-trigger="focus" data-placement="top"
                                         data-content="If you require more than one IP address, separate with a space. Make sure you include the subnet mask, ie: 127.0.0.1/32. "><i
-                                            class="fal fa-question-circle"></i></a>
-                                    authorized to
-                                    deliver or relay mail for
-                                    this domain: </label>
+                                            class="fal fa-question-circle"></i></a>authorized to deliver or relay mail
+                                    for this domain: </label>
                                 <input type="text" class="form-control" id="relayIPAddress" placeholder="IP address(es) in CIDR format" />
                             </div>
                             <div class="form-group">
