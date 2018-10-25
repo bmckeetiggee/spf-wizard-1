@@ -1,11 +1,10 @@
 const answer = document.getElementById("answer");
 const domain = document.getElementById("domain");
-const allowMXServers = document.getElementById("allowMXServers");
-const disallowMXServers = document.getElementById("disallowMXServers");
 const form = document.getElementsByClassName("form__spf-wizard");
 
 //Add IP Address
 $(document).ready(() => {
+  
   //Auto insert domain name into #domainName
   let domainNamePlaceHolder = "your domain,";
   let domainName = "";
@@ -30,18 +29,45 @@ $(document).ready(() => {
     $("#answer").text(main.join(" "));
   });
   $("#answer").text(main.join(" "));*/
+
+    //auto insert domain name in #answer
+    let yourDomain = "example.com";
+    let recordInfo = ". IN TXT";
+    $("#domain").keyup(x => {
+        if (x.originalEvent.key === "Backspace" && yourDomain.length === 1) {
+            yourDomain = "example.com";
+        } else {
+            yourDomain = $("#domain").val();
+        }
+        $("#answer")
+            .text(yourDomain)
+            .append(recordInfo);
+    });
+
+    $("#answer").text(yourDomain);
+
 });
 
-function getMXServersValue() {
-  if ((allowMXServers.checked = true)) {
-    // return allowMXServers.value;
-    console.log("it worked");
-    // else if ((disallowMXServers.checked = true)) {
-    //     return disallowMXServers.value;
-    // }
-  }
-}
+//MX Servers
+$(document).ready(() => {
+    let MXServers = " v=spf1 mx";
+    let disallowMXServers = " v=spf1";
+    //Yes
+    $("input[name=MXServers]").on("change", function() {
+        if ($(this).val() == "yes" && $(this).is(":checked")) {
+            $("#answer").append(MXServers);
+        } else if ($(this).val() == "no" && $(this).is(":checked")) {
+            $("#answer").append(disallowMXServers);
+        }
+    });
+});
 
-function submitForm() {
-  answer.innerHTML = domain.value + "." + " " + "IN TXT";
-}
+// const answerText = domain.value + "" + 'IN TXT "v=spf1"';
+
+// //populate answer box
+// function submitForm() {
+//     if (domain.value != undefined) {
+//         answer.innerHTML = answerText;
+//     }
+//     // answer.innerHTML = domain.value + "." + " " + "IN TXT";
+// }
