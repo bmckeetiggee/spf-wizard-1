@@ -1,20 +1,26 @@
 /*jshint esversion: 6 */
 
+$('a').on('click', (e) => {
+    e.preventDefault();
+    return true;
+});
+
+
 const answer = document.getElementById("answer");
 const domain = document.getElementById("domain");
 const form = document.getElementsByClassName("form__spf-wizard");
 
-//Add IP Address
+
 $(document).ready(() => {
     //Auto insert domain name into #domainName
     let domainNamePlaceHolder = "your domain,";
     let domainName = "";
 
-    $("#domain").keyup(x => {
-        if (x.originalEvent.key === "Backspace" && $("#domain").val() === "") {
+    $(domain).keyup(x => {
+        if (x.originalEvent.key === "Backspace" && $(domain).val() === "") {
             $("#domainName").text(domainNamePlaceHolder);
         } else {
-            domainName = $("#domain").val();
+            domainName = $(domain).val();
             $("#domainName").text(domainName);
         }
     });
@@ -36,60 +42,35 @@ $(document).ready(() => {
 
 //auto insert domain name in #answer
 let yourDomain = "example.com";
-let recordInfo = ". IN TXT";
+
 $(domain).keyup(x => {
     if (x.originalEvent.key === "Backspace" && yourDomain.length === 1) {
         yourDomain = "example.com";
     } else {
-        yourDomain = $("#domain").val();
+        yourDomain = $(domain).val();
     }
     printAnswer();
-    //i need this to also run the getAnswers function when yourDomain value changes
 });
 
 
-//    $("#answer").text(yourDomain);
-
 //MX Servers, IP Address, Hostnames, and Strict inputs
-
 const inputs = 'input[name=MXServers], input[name=IPAddress], input[name=hostnames], input[name=strict]';
-
 //Event Handler for inputs
 $(inputs).on("click", () => {
     printAnswer();
-
 });
-
 
 // auto insert IP relay in answer box
 let relayIPAddress = $('#relayIPAddress');
-let relayIPAddressVal = $("#relayIPAddress").val();
-let relayInfo = "ip4:";
-// const relayIPAddressAnswer = () => {
-//     if (relayIPAddressVal.length >= 2) {
-//         concat(relayInfo, relayIPAddressVal);
-//     }
-// };
+let relayInfo = " ip4:";
 
-//IP address event handler
-$("#relayIPAddress").keyup(x => {
-
-    if (
-        x.originalEvent.key === "Backspace" &&
-        relayIPAddressVal.length === 1
-    ) {
-        $(relayIPAddress).attr(
-            "placeholder",
-            "IP address(es) in CIDR format"
-        );
-    }
-
+$(relayIPAddress).on('keyup', () => {
     printAnswer();
-
 });
 
 
 //Print Answer to DOM
+let recordInfo = ". IN TXT";
 
 const printAnswer = () => {
 
@@ -98,12 +79,17 @@ const printAnswer = () => {
     let IPAddress = $("input[name=IPAddress]:checked").val();
     let Hostnames = $("input[name=hostnames]:checked").val();
     let strict = $("input[name=strict]:checked").val();
+    let relayAnswer = relayInfo.concat($(relayIPAddress).val());
 
 
     $(answer).text(yourDomain)
         .append(recordInfo,
             " ",
             '"',
-            MXServers, IPAddress, Hostnames, strict,
+            MXServers,
+            IPAddress,
+            Hostnames,
+            relayAnswer,
+            strict,
             '"');
 };
