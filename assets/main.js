@@ -20,7 +20,7 @@ $(document).ready(() => {
     copyAnswer = document.getElementsByClassName('answer__copy');
 
     $(copyAnswer).on('click', () => {
-        $(answer).focus();
+        $(answer).select();
         document.execCommand("copy");
     });
 
