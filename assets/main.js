@@ -80,11 +80,7 @@ $(document).ready(() => {
 
     // auto insert IP relay in answer box
     $('#relayIPAddress').on('keyup', () => {
-        let relayArray = $('#relayIPAddress').val().split(',');
-        let relayArrayAppended = relayArray.map(function (el) {
-            return ' ip4:' + el;
-        });
-        console.log(relayArrayAppended);
+        printAnswer();
         //can't figure out how to get the array into the printAnswer function and then splice into the answer array
     });
 
@@ -118,6 +114,13 @@ $(document).ready(() => {
         let Hostnames = $("input[name=hostnames]:checked").val();
         let strict = $("input[name=strict]:checked").val();
         let recordInfo = ". IN TXT";
+
+        let relayArray = $('#relayIPAddress').val().split(',');
+        let relayArrayAppended = relayArray.map(function (el) {
+            return ' ip4:' + el;
+            //trim any spaces
+            //need an if statement. only execute if relay has a value
+        });
 
         let inputAnswers = [
             yourDomain,
