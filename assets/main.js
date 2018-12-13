@@ -1,34 +1,35 @@
 /*jshint esversion: 6 */
 $(document).ready(() => {
 
+    //reusable objects
+    const answer = document.getElementById("answer");
+    const domain = document.getElementById("domain");
+    const form = document.getElementsByClassName("form__spf-wizard");
+
     $('a').on('click', (e) => {
         e.preventDefault();
         return true;
     });
 
     //make answer sticky
+    let answerWrapper = document.getElementsByClassName('input__answer__wrapper');
     let distance = $('.input__answer').offset().top,
         $window = $(window);
 
     $window.scroll(function () {
         if ($window.scrollTop() >= distance) {
-            $('.answer__wrapper').addClass('input__sticky');
+            $(answerWrapper).addClass('input__sticky');
         }
     });
 
     // copy answer
-    copyAnswer = document.getElementsByClassName('answer__copy');
+    copyAnswer = document.getElementsByClassName('input__answer__copy');
 
     $(copyAnswer).on('click', () => {
-        $(answer).select();
+        answer.select();
         document.execCommand("copy");
+        console.log('copied' + answer.value);
     });
-
-
-    //reusable objects
-    const answer = document.getElementById("answer");
-    const domain = document.getElementById("domain");
-    const form = document.getElementsByClassName("form__spf-wizard");
 
     //Auto insert domain name into #domainName
     let domainNamePlaceHolder = "your domain,";
@@ -78,35 +79,24 @@ $(document).ready(() => {
     });
 
     // auto insert IP relay in answer box
-    let relayIPAddress = $('#relayIPAddress');
-    let relayInfo = " ip4:";
-
-    $(relayIPAddress).on('keyup', () => {
-        printAnswer();
+    $('#relayIPAddress').on('keyup', () => {
+        let relayArray = $('#relayIPAddress').val().split(',');
+        let relayArrayAppended = relayArray.map(function (el) {
+            return ' ip4:' + el;
+        });
+        console.log(relayArrayAppended);
+        //can't figure out how to get the array into the printAnswer function and then splice into the answer array
     });
 
-
-    //Print Answer to DOM
-
-
-    // const printAnswer = () => {
-
-    //no longer reruns or duplicates value in answer box
-    let MXServers = $("input[name=MXServers]:checked").val();
-    let IPAddress = $("input[name=IPAddress]:checked").val();
-    let Hostnames = $("input[name=hostnames]:checked").val();
-    let strict = $("input[name=strict]:checked").val();
-    let array = relayIPAddress.val().split(',');
-
+    //        let relayInfo = " ip4:";
     // if (relayIPAddress.val() >= 1) {
     //     relayAnswer = array.map(function (el) {
     //         return ' ip4:' + el;
-    //     }).join();
+    //     });
+    //     inputAnswers.push(relayAnswer);
     // } else {
     //     relayAnswer = "";
     // }
-
-    // console.log(relayAnswer);
 
     // $.each(array, function (i) {
     //     if (relayIPAddress.val() >= 1) {
@@ -116,21 +106,34 @@ $(document).ready(() => {
     //     }
     // });
 
-    let recordInfo = "\\. IN TXT";
 
-    let inputAnswers = jQuery.makeArray(yourDomain,
-        recordInfo,
-        " ",
-        '\"',
-        MXServers,
-        IPAddress,
-        Hostnames,
-        strict,
-        '\"');
+    //Print Answer to DOM
 
-    console.table(inputAnswers);
 
-    // $(answer).val(inputAnswers.join(''));
-    // };
+    const printAnswer = () => {
+
+        //no longer reruns or duplicates value in answer box
+        let MXServers = $("input[name=MXServers]:checked").val();
+        let IPAddress = $("input[name=IPAddress]:checked").val();
+        let Hostnames = $("input[name=hostnames]:checked").val();
+        let strict = $("input[name=strict]:checked").val();
+        let recordInfo = ". IN TXT";
+
+        let inputAnswers = [
+            yourDomain,
+            recordInfo,
+            " ",
+            '"',
+            MXServers,
+            IPAddress,
+            Hostnames,
+            strict,
+            relayArrayAppended.join(),
+            '"'
+        ];
+
+        $(answer).val(inputAnswers.join(''));
+
+    };
 
 });

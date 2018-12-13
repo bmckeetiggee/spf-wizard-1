@@ -75,13 +75,6 @@ html {
     }
 
     .input {
-        &__answer__wrapper {
-            margin: 0px 0px 50px 0px;
-            padding: 5px 10px;
-            width: 100%;
-            display: grid;
-            grid-template-columns: auto 20px;
-        }
 
         &__answer {
             height: 2em;
@@ -90,11 +83,28 @@ html {
             color: $white;
             width: 100%;
             border: none !important;
+
+            &__wrapper {
+                display: grid;
+                grid-template-columns: auto 1fr 20px;
+                width: 100vw;
+                max-width: 1000px;
+                grid-gap: 20px;
+                align-items: center;
+                margin: 50px 0;
+            }
+
+            &__copy {
+                color: #fff;
+                margin-left: -45px;
+                cursor: pointer;
+            }
         }
 
         &__sticky {
             position: fixed;
-            top: 20px;
+            top: 0px;
+            margin: 0;
         }
 
         &__label {
@@ -112,23 +122,6 @@ html {
                 font-size: 0.8em;
                 margin-bottom: 10px;
             }
-        }
-    }
-
-    .answer {
-        &__wrapper {
-            display: grid;
-            grid-template-columns: auto 1fr;
-            width: 100vw;
-            max-width: 1000px;
-            grid-gap: 20px;
-        }
-
-        &__copy {
-            color: #fff;
-            margin-left: -25px;
-            margin-top: 7px;
-            cursor: pointer;
         }
     }
 
