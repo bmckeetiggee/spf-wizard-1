@@ -5,6 +5,7 @@ $(document).ready(() => {
     const answer = $("#answer");
     const domain = $("#domain");
     const form = $("#form__spf-wizard");
+    const inputs = 'input[name=MXServers], input[name=IPAddress], input[name=hostnames], input[name=strict]';
 
     $('a').on('click', (e) => {
         e.preventDefault();
@@ -29,32 +30,20 @@ $(document).ready(() => {
         // console.log('copied' + answer.value);
     });
 
-    //Auto insert domain name into #domainName
-    let domainNamePlaceHolder = "your domain,";
+    //Auto insert domain name
+    let domainNameText = $('.domainName');
+    let domainNamePlaceHolder = "your domain";
     let domainName = "";
 
     $(domain).keyup(x => {
-        if (x.originalEvent.key === "Backspace" && $(domain).val() === "") {
-            $("#domainName").text(domainNamePlaceHolder);
+        if ($(domain).val() === "") {
+            $(domainNameText).text(domainNamePlaceHolder);
         } else {
             domainName = $(domain).val();
-            $("#domainName").text(domainName);
+            $(domainNameText).text(domainName);
         }
     });
-
-
-    // $("#domainName").text(domainNamePlaceHolder); //is this necessary?
-
-    /*let foo = $("#answer").html();
-      const main = ["@ IN TXT", ' "v=spf1', '"'];
-        $("#relayIPAddress").keypress(x => {
-        main.splice(2, 0, "test");
-        console.log(x.originalEvent.key);
-        /*$("#answer").text(x.originalEvent.key);
-        console.log(main);
-        $("#answer").text(main.join(" "));
-      });
-      $("#answer").text(main.join(" "));*/
+    $(domainNameText).text(domainNamePlaceHolder);
 
     //auto insert domain name in #answer
     let yourDomain = "example.com";
@@ -70,26 +59,21 @@ $(document).ready(() => {
     });
 
 
-    //MX Servers, IP Address, Hostnames, and Strict inputs
-    const inputs = 'input[name=MXServers], input[name=IPAddress], input[name=hostnames], input[name=strict]';
-    //Event Handler for inputs
+    //Event Handlers
     $(inputs).on("click", () => {
         printAnswer();
     });
 
-    // auto insert IP relay in answer box
     const relayIPAddress = $('#relayIPAddress');
     $(relayIPAddress).on('keyup', () => {
         printAnswer();
     });
 
-    // auto insert relay hostnames in answer box
     const relayHostnames = $('#relayHostnames');
     $(relayHostnames).on('keyup', () => {
         printAnswer();
     });
 
-    // auto insert relay domains in answer box
     $('#relayDomains').on('keyup', () => {
         printAnswer();
     });
@@ -111,7 +95,7 @@ $(document).ready(() => {
         let inputAnswers = [
             yourDomain,
             " ",
-            '"',
+            '"v=spf1 ',
             MXServers,
             IPAddress,
             Hostnames,
@@ -122,17 +106,36 @@ $(document).ready(() => {
 
         //relay IP address
         let relayArray = $(relayIPAddress).val().split(' ');
-        let relayArrayAppended = relayArray
+
+        const hasDot = (address) => {
+            return address.includes('.');
+        };
+        const hasColon = (address) => {
+            return address.includes(':');
+        };
+
+        let relayArrayIPv6 = relayArray
+            .filter(hasColon)
             .map(function (el) {
-                return ' ip4:' + el; //need regex that toggles ip4 or ip6 if colons are used
+                return ' ip6:' + el;
+            })
+            .join(' ');
+
+        let relayArrayIPv4 = relayArray
+            .filter(hasDot)
+            .map(function (el) {
+                return ' ip4:' + el;
             })
             .join(' ');
 
         if ($(relayIPAddress).val() == 0) {
             //nothing
         } else {
-            inputAnswers.splice(5, 0, relayArrayAppended);
+            inputAnswers
+                .splice(6, 0, relayArrayIPv4, relayArrayIPv6)
         }
+
+
 
         //relay hostnames
         let relayHostnamesArray = $(relayHostnames).val().split(' ');
@@ -145,7 +148,7 @@ $(document).ready(() => {
         if ($(relayHostnames).val() == 0) {
             //nothing
         } else {
-            inputAnswers.splice(6, 0, relayHostnamesArrayAppended);
+            inputAnswers.splice(7, 0, relayHostnamesArrayAppended);
         }
 
         //relay domains
@@ -159,9 +162,8 @@ $(document).ready(() => {
         if ($('#relayDomains').val() == 0) {
             //nothing
         } else {
-            inputAnswers.splice(7, 0, relayDomainsArrayAppended);
+            inputAnswers.splice(8, 0, relayDomainsArrayAppended);
         }
-
 
 
         $(answer).val(inputAnswers.join(''));

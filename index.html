@@ -40,25 +40,26 @@
                         </div>
 
                         <div class="form-group">
-                            <div class="input__label">Should any servers listed as MX<a href="#" data-toggle="popover"
-                                    tabindex="0" data-trigger="focus" data-placement="top" data-content="Current handlers are: mx1.domain.com and mx2.domain.com"><i
-                                        class="fal fa-question-circle"></i></a> be able to send email for this
-                                domain? </div>
+                            <div class="input__label">Should any servers listed as MX servers be able to send email for
+                                <u class="domainName"></u>? <a href="#" data-toggle="popover" tabindex="0" data-trigger="focus"
+                                    data-placement="top" data-content="You can specify MX servers by creating MX records."><i
+                                        class="fal fa-question-circle"></i></a></div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="MXServers" id="allowMXServers" value="v=spf1 mx" />
+                                <input class="form-check-input" type="radio" name="MXServers" id="allowMXServers" value="mx" />
                                 <label class="form-check-label" for="allowMXServers">Yes <span>(recommended)</span></label>
                             </div>
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio" name="MXServers" id="disallowMXServers"
-                                    value="v=spf1" />
+                                    value="" />
                                 <label class="form-check-label" for="disallowMXServers">No</label>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <div class="input__label">Should the current IP address of the domain<a href="#"
-                                    data-toggle="popover" tabindex="0" data-trigger="focus" data-placement="top"
-                                    data-content="This is the IP address set in the A record for the domain."><i class="fal fa-question-circle"></i></a>
+                            <div class="input__label">Should the current IP address of <u class="domainName"></u><a
+                                    href="#" data-toggle="popover" tabindex="0" data-trigger="focus" data-placement="top"
+                                    data-content="This is the IP address specified in the A record for the domain."><i
+                                        class="fal fa-question-circle"></i></a>
                                 be allowed to send email for this domain?</div>
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio" name="IPAddress" id="allowIPAddress" value=" a" />
@@ -74,7 +75,7 @@
                         <div class="form-group">
                             <div class="input__label">Should any hostnames<a href="#" data-toggle="popover" tabindex="0"
                                     data-trigger="focus" data-placement="top" data-content="This includes subdomains."><i
-                                        class="fal fa-question-circle"></i></a> ending in <u id="domainName"></u>
+                                        class="fal fa-question-circle"></i></a> ending in <u class="domainName"></u>
                                 be able to send email for this domain? </div>
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio" name="hostnames" id="disallowHostnames"
@@ -111,7 +112,7 @@
                                         data-toggle="popover" tabindex="0" data-trigger="focus" data-placement="top"
                                         data-content="If you require more than one IP address, separate with a space. Make sure you include the subnet mask, ie: 127.0.0.1/32. "><i
                                             class="fal fa-question-circle"></i></a>authorized to deliver or relay mail
-                                    for this domain: </label>
+                                    for <u class="domainName"></u>: </label>
                                 <input type="text" class="form-control" id="relayIPAddress" placeholder="IP address(es) in CIDR format. Separated by a space."
                                     value="" />
                             </div>
@@ -122,7 +123,7 @@
                                             class="fal fa-question-circle"></i></a>
                                     authorized to
                                     deliver or relay mail for
-                                    this domain: </label>
+                                    <u class="domainName"></u>: </label>
                                 <input type="text" class="form-control" id="relayHostnames" placeholder="Hostname(s) separated by a space."
                                     value="" />
                             </div>
@@ -133,7 +134,7 @@
                                             class="fal fa-question-circle"></i></a>
                                     authorized to
                                     deliver or relay mail for
-                                    your domain: </label>
+                                    <u class="domainName"></u>: </label>
                                 <input type="text" class="form-control" id="relayDomains" placeholder="Domain(s) separated by a space."
                                     value="" />
                             </div>
