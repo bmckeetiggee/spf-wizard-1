@@ -2,9 +2,9 @@
 $(document).ready(() => {
 
     //reusable objects
-    const answer = document.getElementById("answer");
-    const domain = document.getElementById("domain");
-    const form = document.getElementsByClassName("form__spf-wizard");
+    const answer = $("#answer");
+    const domain = $("#domain");
+    const form = $("#form__spf-wizard");
 
     $('a').on('click', (e) => {
         e.preventDefault();
@@ -12,7 +12,7 @@ $(document).ready(() => {
     });
 
     //make answer sticky
-    let answerWrapper = document.getElementsByClassName('input__answer__wrapper');
+    let answerWrapper = $('.input__answer__wrapper');
     let distance = $('.input__answer').offset().top,
         $window = $(window);
 
@@ -23,9 +23,7 @@ $(document).ready(() => {
     });
 
     // copy answer
-    copyAnswer = document.getElementsByClassName('input__answer__copy');
-
-    $(copyAnswer).on('click', () => {
+    $('.input__answer__copy').on('click', () => {
         answer.select();
         document.execCommand("copy");
         console.log('copied' + answer.value);
@@ -63,9 +61,10 @@ $(document).ready(() => {
 
     $(domain).keyup(x => {
         if (x.originalEvent.key === "Backspace" && yourDomain.length === 1) {
-            yourDomain = "example.com";
+            yourDomain = "example.com. IN TXT";
         } else {
-            yourDomain = $(domain).val();
+            yourDomain = $(domain).val() + ". IN TXT";
+            //now recordInfo only shows if domain has a value 
         }
         printAnswer();
     });
@@ -79,9 +78,14 @@ $(document).ready(() => {
     });
 
     // auto insert IP relay in answer box
-    $('#relayIPAddress').on('keyup', () => {
-        printAnswer();
-        //can't figure out how to get the array into the printAnswer function and then splice into the answer array
+    const relayIPAddress = $('#relayIPAddress');
+
+    $(relayIPAddress).on('keyup', () => {
+        if (relayIPAddress.val >= 1) {
+            printAnswer();
+        } else {
+            return false;
+        }
     });
 
     //        let relayInfo = " ip4:";
@@ -113,25 +117,23 @@ $(document).ready(() => {
         let IPAddress = $("input[name=IPAddress]:checked").val();
         let Hostnames = $("input[name=hostnames]:checked").val();
         let strict = $("input[name=strict]:checked").val();
-        let recordInfo = ". IN TXT";
 
-        let relayArray = $('#relayIPAddress').val().split(',');
+        let relayArray = relayIPAddress.val().split(' ');
         let relayArrayAppended = relayArray.map(function (el) {
             return ' ip4:' + el;
+            //need this function to ONLY run if has a value >= 1
             //trim any spaces
-            //need an if statement. only execute if relay has a value
         });
 
         let inputAnswers = [
             yourDomain,
-            recordInfo,
             " ",
             '"',
             MXServers,
             IPAddress,
             Hostnames,
             strict,
-            relayArrayAppended.join(),
+            relayArrayAppended.join(' '),
             '"'
         ];
 

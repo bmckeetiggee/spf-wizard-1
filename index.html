@@ -20,12 +20,13 @@
         <div class="container overlay--center">
             <div class="row">
                 <div class="col">
-                    <h1>SPF Wizard</h1>
+                    <h1>SPF Record Generator</h1>
+                    <!-- Need an icon or graphic of some sort -->
                 </div>
             </div>
             <div class="row input__answer__wrapper">
                 <div class="input__label no-margin">Copy and paste this:</div>
-                <input type="text" id="answer" class="input__answer" value="" disabled>
+                <input type="text" id="answer" class="input__answer" value="">
                 <i class="fal fa-copy input__answer__copy"></i>
             </div>
             <div class="row">
@@ -111,7 +112,7 @@
                                         data-content="If you require more than one IP address, separate with a space. Make sure you include the subnet mask, ie: 127.0.0.1/32. "><i
                                             class="fal fa-question-circle"></i></a>authorized to deliver or relay mail
                                     for this domain: </label>
-                                <input type="text" class="form-control" id="relayIPAddress" placeholder="IP address(es) in CIDR format"
+                                <input type="text" class="form-control" id="relayIPAddress" placeholder="IP address(es) in CIDR format. Separated by a space."
                                     value="" />
                             </div>
                             <div class="form-group">
@@ -122,7 +123,7 @@
                                     authorized to
                                     deliver or relay mail for
                                     this domain: </label>
-                                <input type="text" class="form-control" id="relayHostnames" placeholder="Hostname(s)" />
+                                <input type="text" class="form-control" id="relayHostnames" placeholder="Hostname(s) separated by a space." />
                             </div>
                             <div class="form-group">
                                 <label class="input__label" for="relayDomains">List any domain(s)<a href="#"
@@ -132,7 +133,7 @@
                                     authorized to
                                     deliver or relay mail for
                                     your domain: </label>
-                                <input type="text" class="form-control" id="relayDomains" placeholder="Domain(s)" />
+                                <input type="text" class="form-control" id="relayDomains" placeholder="Domain(s) separated by a space." />
                             </div>
                         </div>
                     </form>
