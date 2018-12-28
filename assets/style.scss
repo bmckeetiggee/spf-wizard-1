@@ -1,6 +1,8 @@
 @import url("https://fonts.googleapis.com/css?family=Lato:300,400,700,700i");
 
 $font-size: 18px;
+$primary: #1ba8de;
+$secondary: #5c01e2;
 $white: rgba(255, 255, 255, 0.9);
 $white--faded: rgba(255, 255, 255, 0.6);
 $font-family: "Lato",
@@ -23,7 +25,7 @@ html {
 }
 
 .section__spf-wizard {
-    background-image: linear-gradient(#1ba8de, #5c01e2);
+    background-image: linear-gradient($primary, $secondary);
     padding: 100px 0px;
 
     .overlay--center {
@@ -81,11 +83,15 @@ html {
         &__answer {
             height: 2em;
             padding-left: 1em;
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.4);
             box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.1);
-            color: $white;
+            text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+            color: white;
+            font-weight: 700;
             width: 100%;
             border: none !important;
+            font-size: 1.2em;
+            border-radius: 3px;
 
             &__wrapper {
                 display: grid;
@@ -98,9 +104,10 @@ html {
             }
 
             &__copy {
-                color: #fff;
-                margin-left: -45px;
+                color: white;
+                margin-left: -55px;
                 cursor: pointer;
+                font-size: 1.5em;
             }
         }
 
@@ -108,6 +115,7 @@ html {
             position: fixed;
             top: 0px;
             margin: 0;
+            z-index: 999;
         }
 
         &__label {

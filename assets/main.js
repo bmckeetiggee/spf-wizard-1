@@ -26,7 +26,7 @@ $(document).ready(() => {
     $('.input__answer__copy').on('click', () => {
         answer.select();
         document.execCommand("copy");
-        console.log('copied' + answer.value);
+        // console.log('copied' + answer.value);
     });
 
     //Auto insert domain name into #domainName
@@ -79,36 +79,25 @@ $(document).ready(() => {
 
     // auto insert IP relay in answer box
     const relayIPAddress = $('#relayIPAddress');
-
     $(relayIPAddress).on('keyup', () => {
-        if (relayIPAddress.val >= 1) {
-            printAnswer();
-        } else {
-            return false;
-        }
+        printAnswer();
     });
 
-    //        let relayInfo = " ip4:";
-    // if (relayIPAddress.val() >= 1) {
-    //     relayAnswer = array.map(function (el) {
-    //         return ' ip4:' + el;
-    //     });
-    //     inputAnswers.push(relayAnswer);
-    // } else {
-    //     relayAnswer = "";
-    // }
+    // auto insert relay hostnames in answer box
+    const relayHostnames = $('#relayHostnames');
+    $(relayHostnames).on('keyup', () => {
+        printAnswer();
+    });
 
-    // $.each(array, function (i) {
-    //     if (relayIPAddress.val() >= 1) {
-    //         relayAnswer = relayInfo.concat($(relayIPAddress).val());
-    //     } else {
-    //         relayAnswer = "";
-    //     }
-    // });
+    // auto insert relay domains in answer box
+    $('#relayDomains').on('keyup', () => {
+        printAnswer();
+    });
+
+
 
 
     //Print Answer to DOM
-
 
     const printAnswer = () => {
 
@@ -118,12 +107,6 @@ $(document).ready(() => {
         let Hostnames = $("input[name=hostnames]:checked").val();
         let strict = $("input[name=strict]:checked").val();
 
-        let relayArray = relayIPAddress.val().split(' ');
-        let relayArrayAppended = relayArray.map(function (el) {
-            return ' ip4:' + el;
-            //need this function to ONLY run if has a value >= 1
-            //trim any spaces
-        });
 
         let inputAnswers = [
             yourDomain,
@@ -133,9 +116,53 @@ $(document).ready(() => {
             IPAddress,
             Hostnames,
             strict,
-            relayArrayAppended.join(' '),
             '"'
         ];
+
+
+        //relay IP address
+        let relayArray = $(relayIPAddress).val().split(' ');
+        let relayArrayAppended = relayArray
+            .map(function (el) {
+                return ' ip4:' + el; //need regex that toggles ip4 or ip6 if colons are used
+            })
+            .join(' ');
+
+        if ($(relayIPAddress).val() == 0) {
+            //nothing
+        } else {
+            inputAnswers.splice(5, 0, relayArrayAppended);
+        }
+
+        //relay hostnames
+        let relayHostnamesArray = $(relayHostnames).val().split(' ');
+        let relayHostnamesArrayAppended = relayHostnamesArray
+            .map(function (el) {
+                return ' a:' + el; //need regex that toggles ip4 or ip6 if colons are used
+            })
+            .join(' ');
+
+        if ($(relayHostnames).val() == 0) {
+            //nothing
+        } else {
+            inputAnswers.splice(6, 0, relayHostnamesArrayAppended);
+        }
+
+        //relay domains
+        let relayDomainsArray = $('#relayDomains').val().split(' ');
+        let relayDomainsArrayAppended = relayDomainsArray
+            .map(function (el) {
+                return ' include:' + el; //need regex that toggles ip4 or ip6 if colons are used
+            })
+            .join(' ');
+
+        if ($('#relayDomains').val() == 0) {
+            //nothing
+        } else {
+            inputAnswers.splice(7, 0, relayDomainsArrayAppended);
+        }
+
+
 
         $(answer).val(inputAnswers.join(''));
 
