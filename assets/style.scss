@@ -1,22 +1,23 @@
-@import url("https://fonts.googleapis.com/css?family=Lato:300,400,700,700i");
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700");
+@import url("https://fonts.googleapis.com/css?family=Raleway:700");
 
 $font-size: 18px;
-$primary: #1ba8de;
-$secondary: #5c01e2;
+$primary: #5a6dd5;
+$secondary: #9f64ff;
 $white: rgba(255, 255, 255, 0.9);
 $white--faded: rgba(255, 255, 255, 0.6);
-$font-family: "Lato",
+$font-family: "Open Sans",
 Arial,
 Helvetica,
 sans-serif;
 
 html {
+
     body {
         box-sizing: border-box;
         min-height: 100%;
         font-size: $font-size;
         font-family: $font-family;
-        background-color: $secondary;
     }
 }
 
@@ -24,17 +25,21 @@ html {
     margin-top: 50px;
 }
 
+.no-margin {
+    margin: 0px !important;
+}
+
 .section__spf-wizard {
     background-image: linear-gradient($primary, $secondary);
-    padding: 100px 0px;
-    height: 100%;
+    padding: 50px 0px;
+    overflow-y: scroll;
 
-    .overlay--center {
-        background-image: url(https://dnsmadeeasy.com/assets/images/overlay-center.png);
+    .overlay {
+        background-image: url(images/overlay-left.png);
         background-repeat: no-repeat;
-        background-size: cover;
+        background-size: contain;
         max-height: 1200px;
-        background-position: center;
+        background-position: left center;
     }
 
     h1 {
@@ -42,6 +47,18 @@ html {
         color: $white;
         font-weight: 700;
         text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+        font-family: 'Raleway';
+        text-transform: uppercase;
+    }
+
+    .img__wrapper {
+        display: grid;
+        place-items: center center;
+    }
+
+    .logo {
+        max-height: 80px;
+        margin-bottom: 20px;
     }
 
     .btn__submit {
@@ -76,7 +93,7 @@ html {
     }
 
     .form-group {
-        margin-bottom: 50px;
+        margin-bottom: 70px;
     }
 
     .input {
@@ -90,18 +107,20 @@ html {
             color: white;
             font-weight: 700;
             width: 100%;
+            max-width: 1000px;
             border: none !important;
             font-size: 1.2em;
             border-radius: 3px;
+            transition: ease 0.3s;
 
             &__wrapper {
                 display: grid;
                 grid-template-columns: auto 1fr 20px;
-                width: 100vw;
-                max-width: 1000px;
+                width: 100%;
                 grid-gap: 20px;
                 align-items: center;
                 margin: 50px 0;
+                transition: ease 0.3s;
             }
 
             &__copy {
@@ -113,18 +132,10 @@ html {
             }
         }
 
-        &__sticky {
-            position: fixed;
-            top: 0px;
-            margin: 0;
-            z-index: 2;
-        }
-
         &__label {
             color: $white;
-            font-size: 1.1em;
+            font-size: 1.2em;
             margin-bottom: 10px;
-            font-style: italic;
             font-weight: 700;
 
             a {
@@ -141,12 +152,28 @@ html {
     .form__advanced-options {
         background: rgba(255, 255, 255, 0.2);
         padding: 20px 30px;
-        border-radius: 10px;
+        border-radius: 5px;
+        margin-bottom: 50px;
 
         &__title {
             color: $white;
             font-size: 1.7em;
             margin-bottom: 20px;
+            font-weight: 300;
         }
     }
+
+    .footer {
+        width: 100%;
+
+        p {
+            color: $white--faded;
+            text-align: center;
+        }
+
+        a {
+            color: $white;
+        }
+    }
+
 }

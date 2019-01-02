@@ -13,15 +13,15 @@ $(document).ready(() => {
     });
 
     //make answer sticky
-    let answerWrapper = $('.input__answer__wrapper');
-    let distance = $('.input__answer').offset().top,
-        $window = $(window);
+    // let answerWrapper = $('.input__answer__wrapper');
+    // let distance = $('.input__answer').offset().top,
+    //     $window = $(window);
 
-    $window.scroll(function () {
-        if ($window.scrollTop() >= distance) {
-            $(answerWrapper).addClass('input__sticky');
-        }
-    });
+    // $window.scroll(function () {
+    //     if ($window.scrollTop() >= distance) {
+    //         $(answerWrapper).addClass('input__sticky');
+    //     }
+    // });
 
     // copy answer
     $('.input__answer__copy').on('click', () => {

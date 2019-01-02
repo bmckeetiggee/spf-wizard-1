@@ -17,130 +17,149 @@
 <body>
 
     <div class="section__spf-wizard">
-        <div class="container overlay--center">
-            <div class="row">
-                <div class="col">
-                    <h1>SPF Record Generator</h1>
-                    <!-- Need an icon or graphic of some sort -->
+        <div class="container-fluid overlay">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 img__wrapper">
+                        <img src="assets/images/assembly-line.png" alt="Assembly line logo" class="logo">
+                    </div>
+                    <div class="col-12">
+                        <h1>SPF Record Generator</h1>
+                    </div>
                 </div>
-            </div>
-            <div class="row input__answer__wrapper">
-                <div class="input__label no-margin">Copy and paste this:</div>
-                <input type="text" id="answer" class="input__answer" value="">
-                <i class="fal fa-copy input__answer__copy"></i>
-            </div>
-            <div class="row">
-                <div class="col-md-8 ml-auto mr-auto">
-                    <form class="form__spf-wizard">
+                <div class="row margin-top-50">
+                    <div class="col-md-10 ml-auto mr-auto">
+                        <form class="form__spf-wizard">
 
-                        <div class="form-group">
-                            <div class="input-group">
-                                <input type="text" class="form-control" id="domain" placeholder="Your domain" value=""
-                                    autofocus />
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="input__label">Should any servers listed as MX servers be able to send email for
-                                <u class="domainName"></u>? <a href="#" data-toggle="popover" tabindex="0" data-trigger="focus"
-                                    data-placement="top" data-content="You can specify MX servers by creating MX records."><i
-                                        class="fal fa-question-circle"></i></a></div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="MXServers" id="allowMXServers" value="mx" />
-                                <label class="form-check-label" for="allowMXServers">Yes <span>(recommended)</span></label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="MXServers" id="disallowMXServers"
-                                    value="" />
-                                <label class="form-check-label" for="disallowMXServers">No</label>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="input__label">Should the current IP address of <u class="domainName"></u><a
-                                    href="#" data-toggle="popover" tabindex="0" data-trigger="focus" data-placement="top"
-                                    data-content="This is the IP address specified in the A record for the domain."><i
-                                        class="fal fa-question-circle"></i></a>
-                                be allowed to send email for this domain?</div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="IPAddress" id="allowIPAddress" value=" a" />
-                                <label class="form-check-label" for="allowIPAddress">Yes <span>(recommended)</span></label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="IPAddress" id="disallowIPAddress"
-                                    value="" />
-                                <label class="form-check-label" for="disallowIPAddress">No</label>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="input__label">Should any hostnames<a href="#" data-toggle="popover" tabindex="0"
-                                    data-trigger="focus" data-placement="top" data-content="This includes subdomains."><i
-                                        class="fal fa-question-circle"></i></a> ending in <u class="domainName"></u>
-                                be able to send email for this domain? </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="hostnames" id="disallowHostnames"
-                                    value="" />
-                                <label class="form-check-label" for="disallowHostnames">No <span>(recommended)</span></label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="hostnames" id="allowHostnames" value=" ptr" />
-                                <label class="form-check-label" for="allowHostnames">Yes</label>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="input__label">How strict should the servers be that handle the emails? </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="strict" id="strictFail" value=" -all" />
-                                <label class="form-check-label" for="strictFail">Fail <span>(Reject non-compliant
-                                        requests)</span></label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="strict" id="strictSoftFail" value=" ~all" />
-                                <label class="form-check-label" for="strictSoftFail">Soft Fail <span>(Accept, but not
-                                        mark non-compliant requests)</span></label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="strict" id="strictNeutral" value=" ?all" />
-                                <label class="form-check-label" for="strictNeutral">Neutral <span>(Mail will probably
-                                        accepted)</span></label>
-                            </div>
-                        </div>
-                        <div class="form__advanced-options">
-                            <div class="form__advanced-options__title">Advanced Options:</div>
                             <div class="form-group">
-                                <label class="input__label" for="relayIPAddress">List any IP address(es)<a href="#"
-                                        data-toggle="popover" tabindex="0" data-trigger="focus" data-placement="top"
-                                        data-content="If you require more than one IP address, separate with a space. Make sure you include the subnet mask, ie: 127.0.0.1/32. "><i
-                                            class="fal fa-question-circle"></i></a>authorized to deliver or relay mail
-                                    for <u class="domainName"></u>: </label>
-                                <input type="text" class="form-control" id="relayIPAddress" placeholder="IP address(es) in CIDR format. Separated by a space."
-                                    value="" />
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="domain" placeholder="Your domain" value=""
+                                        autofocus />
+                                </div>
                             </div>
+
+                            <div class="row input__answer__wrapper">
+                                <div class="input__label no-margin">Copy and paste this:</div>
+                                <input type="text" id="answer" class="input__answer" value="">
+                                <i class="fal fa-copy input__answer__copy"></i>
+                            </div>
+
                             <div class="form-group">
-                                <label class="input__label" for="relayHostnames">List any hostname(s)<a href="#"
-                                        data-toggle="popover" tabindex="0" data-trigger="focus" data-placement="top"
-                                        data-content="If you require more than one hostname, separate with a space. "><i
+                                <div class="input__label">Should any servers listed as MX servers be able to send email
+                                    for
+                                    <u class="domainName"></u>? <a href="#" data-toggle="popover" tabindex="0"
+                                        data-trigger="focus" data-placement="top" data-content="You can specify MX servers by creating MX records."><i
+                                            class="fal fa-question-circle"></i></a></div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="MXServers" id="allowMXServers"
+                                        value="mx" />
+                                    <label class="form-check-label" for="allowMXServers">Yes <span>(recommended)</span></label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="MXServers" id="disallowMXServers"
+                                        value="" />
+                                    <label class="form-check-label" for="disallowMXServers">No</label>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="input__label">Should the current IP address of <u class="domainName"></u><a
+                                        href="#" data-toggle="popover" tabindex="0" data-trigger="focus" data-placement="top"
+                                        data-content="This is the IP address specified in the A record for the domain."><i
                                             class="fal fa-question-circle"></i></a>
-                                    authorized to
-                                    deliver or relay mail for
-                                    <u class="domainName"></u>: </label>
-                                <input type="text" class="form-control" id="relayHostnames" placeholder="Hostname(s) separated by a space."
-                                    value="" />
+                                    be allowed to send email for this domain?</div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="IPAddress" id="allowIPAddress"
+                                        value=" a" />
+                                    <label class="form-check-label" for="allowIPAddress">Yes <span>(recommended)</span></label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="IPAddress" id="disallowIPAddress"
+                                        value="" />
+                                    <label class="form-check-label" for="disallowIPAddress">No</label>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="input__label">Should any hostnames<a href="#" data-toggle="popover"
+                                        tabindex="0" data-trigger="focus" data-placement="top" data-content="This includes subdomains."><i
+                                            class="fal fa-question-circle"></i></a> ending in <u class="domainName"></u>
+                                    be able to send email for this domain? </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="hostnames" id="disallowHostnames"
+                                        value="" />
+                                    <label class="form-check-label" for="disallowHostnames">No <span>(recommended)</span></label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="hostnames" id="allowHostnames"
+                                        value=" ptr" />
+                                    <label class="form-check-label" for="allowHostnames">Yes</label>
+                                </div>
                             </div>
                             <div class="form-group">
-                                <label class="input__label" for="relayDomains">List any domain(s)<a href="#"
-                                        data-toggle="popover" tabindex="0" data-trigger="focus" data-placement="top"
-                                        data-content="If you require more than one domain, separate with a space. "><i
-                                            class="fal fa-question-circle"></i></a>
-                                    authorized to
-                                    deliver or relay mail for
-                                    <u class="domainName"></u>: </label>
-                                <input type="text" class="form-control" id="relayDomains" placeholder="Domain(s) separated by a space."
-                                    value="" />
+                                <div class="input__label">How strict should the servers be that handle the emails?
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="strict" id="strictFail" value=" -all" />
+                                    <label class="form-check-label" for="strictFail">Fail <span>(Reject non-compliant
+                                            requests)</span></label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="strict" id="strictSoftFail"
+                                        value=" ~all" />
+                                    <label class="form-check-label" for="strictSoftFail">Soft Fail <span>(Accept, but
+                                            not
+                                            mark non-compliant requests)</span></label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="strict" id="strictNeutral" value=" ?all" />
+                                    <label class="form-check-label" for="strictNeutral">Neutral <span>(Mail will
+                                            probably
+                                            accepted)</span></label>
+                                </div>
                             </div>
-                        </div>
-                    </form>
+                            <div class="form__advanced-options">
+                                <div class="form__advanced-options__title">Advanced Options:</div>
+                                <div class="form-group">
+                                    <label class="input__label" for="relayIPAddress">List any IP address(es)<a href="#"
+                                            data-toggle="popover" tabindex="0" data-trigger="focus" data-placement="top"
+                                            data-content="If you require more than one IP address, separate with a space. Make sure you include the subnet mask, ie: 127.0.0.1/32. "><i
+                                                class="fal fa-question-circle"></i></a>authorized to deliver or relay
+                                        mail
+                                        for <u class="domainName"></u>: </label>
+                                    <input type="text" class="form-control" id="relayIPAddress" placeholder="IP address(es) in CIDR format. Separated by a space."
+                                        value="" />
+                                </div>
+                                <div class="form-group">
+                                    <label class="input__label" for="relayHostnames">List any hostname(s)<a href="#"
+                                            data-toggle="popover" tabindex="0" data-trigger="focus" data-placement="top"
+                                            data-content="If you require more than one hostname, separate with a space. "><i
+                                                class="fal fa-question-circle"></i></a>
+                                        authorized to
+                                        deliver or relay mail for
+                                        <u class="domainName"></u>: </label>
+                                    <input type="text" class="form-control" id="relayHostnames" placeholder="Hostname(s) separated by a space."
+                                        value="" />
+                                </div>
+                                <div class="form-group">
+                                    <label class="input__label" for="relayDomains">List any domain(s)<a href="#"
+                                            data-toggle="popover" tabindex="0" data-trigger="focus" data-placement="top"
+                                            data-content="If you require more than one domain, separate with a space. "><i
+                                                class="fal fa-question-circle"></i></a>
+                                        authorized to
+                                        deliver or relay mail for
+                                        <u class="domainName"></u>: </label>
+                                    <input type="text" class="form-control" id="relayDomains" placeholder="Domain(s) separated by a space."
+                                        value="" />
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="footer">
+                        <p>Built with <i class="fal fa-heart"></i> by <a href="https://constellix.com">Constellix</a></p>
+                    </div>
                 </div>
             </div>
         </div>
