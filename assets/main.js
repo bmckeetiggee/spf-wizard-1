@@ -46,10 +46,8 @@ $(document).ready(() => {
     $(domainNameText).text(domainNamePlaceHolder);
 
     //auto insert domain name in #answer
-    let yourDomain = "example.com";
-
     $(domain).keyup(x => {
-        if (x.originalEvent.key === "Backspace" && yourDomain.length === 1) {
+        if ($(domain).val == "") {
             yourDomain = "example.com. IN TXT";
         } else {
             yourDomain = $(domain).val() + ". IN TXT";
@@ -132,7 +130,7 @@ $(document).ready(() => {
             //nothing
         } else {
             inputAnswers
-                .splice(6, 0, relayArrayIPv4, relayArrayIPv6)
+                .splice(6, 0, relayArrayIPv4, relayArrayIPv6);
         }
 
 
