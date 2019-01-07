@@ -21,6 +21,15 @@ html {
     }
 }
 
+a {
+    color: $white;
+    font-style: italic;
+
+    &:hover {
+        color: white;
+    }
+}
+
 .margin-top-50 {
     margin-top: 50px;
 }
@@ -31,8 +40,9 @@ html {
 
 .section__spf-wizard {
     background-image: linear-gradient($primary, $secondary);
-    padding: 50px 0px;
+    padding: 100px 0px;
     overflow-y: scroll;
+    height: 100%;
 
     .overlay {
         background-image: url(images/overlay-left.png);
@@ -163,16 +173,42 @@ html {
         }
     }
 
+    .built-by {
+        &__background {
+            background-image: url(images/heart.png);
+            background-size: contain;
+            background-position: center center;
+            background-repeat: no-repeat;
+            position: absolute;
+            bottom: 0px;
+            right: 20px;
+            height: 200px;
+            width: 200px;
+            padding: 70px 0;
+            transform: rotate(-10deg);
+            transition: cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.3s;
+
+            &:hover {
+                transform: rotate(10deg);
+            }
+
+            @media (max-width: 1200px) {
+                position: relative;
+            }
+        }
+
+        &__text {
+            text-align: center;
+            color: $white;
+        }
+    }
+
     .footer {
         width: 100%;
 
         p {
             color: $white--faded;
             text-align: center;
-        }
-
-        a {
-            color: $white;
         }
     }
 

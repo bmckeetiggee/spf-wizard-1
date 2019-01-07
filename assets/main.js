@@ -46,15 +46,15 @@ $(document).ready(() => {
     $(domainNameText).text(domainNamePlaceHolder);
 
     //auto insert domain name in #answer
-    $(domain).keyup(x => {
-        if ($(domain).val == "") {
-            yourDomain = "example.com. IN TXT";
-        } else {
-            yourDomain = $(domain).val() + ". IN TXT";
-            //now recordInfo only shows if domain has a value 
-        }
-        printAnswer();
-    });
+    // $(domain).keyup(x => {
+    //     if ($(domain).val == "") {
+    //         yourDomain = "example.com. IN TXT";
+    //     } else {
+    //         yourDomain = $(domain).val() + ". IN TXT";
+    //         //now recordInfo only shows if domain has a value 
+    //     }
+    //     printAnswer();
+    // });
 
 
     //Event Handlers
@@ -91,14 +91,12 @@ $(document).ready(() => {
 
 
         let inputAnswers = [
-            yourDomain,
-            " ",
-            '"v=spf1 ',
+            // yourDomain,
+            'v=spf1 ',
             MXServers,
             IPAddress,
             Hostnames,
-            strict,
-            '"'
+            strict
         ];
 
 
