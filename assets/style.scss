@@ -60,9 +60,9 @@ a {
 
 .section__spf-wizard {
     background-image: linear-gradient($primary, $secondary);
-
     overflow-y: scroll;
-    height: 100%;
+    min-height: 100%;
+    height: 100vh;
 
     .overlay {
         background-image: url(images/overlay-left.png);
