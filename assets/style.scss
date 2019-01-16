@@ -24,10 +24,15 @@ html {
 a {
     color: $white;
     font-style: italic;
+    text-decoration: underline;
 
     &:hover {
         color: white;
     }
+}
+
+.text--center {
+    text-align: center;
 }
 
 .margin-top-50 {
@@ -38,9 +43,24 @@ a {
     margin: 0px !important;
 }
 
+.padding-top-100 {
+    padding-top: 100px;
+}
+
+.button--home {
+    font-size: 5em;
+    float: left;
+}
+
+.button--syntax {
+    float: right;
+    font-size: 2em;
+    margin: 10px 15px;
+}
+
 .section__spf-wizard {
     background-image: linear-gradient($primary, $secondary);
-    padding: 100px 0px;
+
     overflow-y: scroll;
     height: 100%;
 
@@ -50,6 +70,7 @@ a {
         background-size: contain;
         max-height: 1200px;
         background-position: left center;
+        padding: 100px 0px;
     }
 
     h1 {
@@ -167,49 +188,119 @@ a {
 
         &__title {
             color: $white;
-            font-size: 1.7em;
+            font-size: 1.5em;
             margin-bottom: 20px;
-            font-weight: 300;
+            font-weight: 700;
+            text-transform: uppercase;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+            font-family: 'Raleway';
         }
     }
 
-    .built-by {
-        &__background {
-            background-image: url(images/heart.png);
-            background-size: contain;
-            background-position: center center;
-            background-repeat: no-repeat;
-            position: absolute;
-            bottom: 0px;
-            right: 20px;
-            height: 200px;
-            width: 200px;
-            padding: 70px 0;
-            transform: rotate(-10deg);
-            transition: cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.3s;
+}
 
-            &:hover {
-                transform: rotate(10deg);
-            }
+.syntax {
 
-            @media (max-width: 1200px) {
-                position: relative;
-            }
-        }
-
-        &__text {
-            text-align: center;
-            color: $white;
-        }
+    p,
+    li {
+        color: $white;
+        line-height: 2em;
+        font-size: 1.2em;
     }
 
-    .footer {
-        width: 100%;
+    h2,
+    h3,
+    h4,
+    strong {
+        color: $white;
+        line-height: 3em;
+    }
 
-        p {
+    h2 {
+        font-size: 2em;
+        font-weight: 700;
+        text-transform: uppercase;
+        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+        font-family: 'Raleway';
+        text-align: center;
+    }
+
+    h3 {
+        @extend h2;
+        font-size: 1.5em;
+        font-style: italic;
+        margin-top: 50px;
+    }
+
+    h4 {
+        line-height: 0.5em;
+        color: $white--faded;
+        font-size: 3em;
+        margin-top: 70px;
+    }
+
+    &__intro {
+        p:first-child::first-letter {
+            float: left;
+            font-size: 5em;
             color: $white--faded;
-            text-align: center;
         }
     }
 
+    .fa-li {
+        margin-top: 5px;
+    }
+
+    li {
+        margin-bottom: 1em;
+        line-height: 1.5em;
+    }
+
+    .code-block {
+        background: rgba(255, 255, 255, 0.2);
+        padding: 0 5px;
+        font-family: monospace;
+    }
+}
+
+
+.built-by {
+    &__background {
+        background-image: url(images/heart.png);
+        background-size: contain;
+        background-position: center center;
+        background-repeat: no-repeat;
+        position: absolute;
+        bottom: 0px;
+        right: 20px;
+        height: 200px;
+        width: 200px;
+        padding: 70px 0;
+        transform: rotate(-10deg);
+        transition: cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.3s;
+
+        &:hover {
+            transform: rotate(10deg);
+        }
+
+        @media (max-width: 1200px) {
+            position: relative;
+        }
+    }
+
+    &__text {
+        text-align: center;
+        color: $white;
+        font-size: $font-size !important;
+        line-height: 1.5em !important;
+    }
+}
+
+.footer {
+    width: 100%;
+
+    p {
+        color: $white--faded;
+        text-align: center;
+    }
 }

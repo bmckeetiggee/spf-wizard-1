@@ -7,7 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>SPF Record Generator | Built by Constellix</title>
     <meta name="description" content="Free SPF generator tool. Create your own custom SPF records by answering a few questions, then copy and paste into a TXT record through your DNS provider. " />
-    <link rel="icon" href="https://dnsmadeeasy.com/favicon.ico">
+    <link rel="icon" href="https://constellix.com/favicon.ico" />
+    <link rel="canonical" href="https://spfrecord.io/" />
 
     <!-- Styles -->
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css" />
@@ -16,8 +17,12 @@
 </head>
 
 <body>
-
     <div class="section__spf-wizard">
+        <div class="button--syntax">
+            <a href="/syntax/">
+                <i class="fal fa-question-circle"></i>
+            </a>
+        </div>
         <div class="container-fluid overlay">
             <div class="container">
                 <div class="row">
@@ -83,7 +88,7 @@
 
                             <div class="form-group">
                                 <div class="input__label">Should any hostnames<a href="#" data-toggle="popover"
-                                        tabindex="0" data-trigger="focus" data-placement="top" data-content="This includes subdomains."><i
+                                        tabindex="0" data-trigger="focus" data-placement="top" data-content="If you only want to specify one or more hostnames, use the Advanced Settings below. "><i
                                             class="fal fa-question-circle"></i></a> ending in <u class="domainName"></u>
                                     be able to send email for this domain? </div>
                                 <div class="form-check form-check-inline">
@@ -134,7 +139,7 @@
                                 <div class="form-group">
                                     <label class="input__label" for="relayHostnames">List any hostname(s)<a href="#"
                                             data-toggle="popover" tabindex="0" data-trigger="focus" data-placement="top"
-                                            data-content="If you require more than one hostname, separate with a space. "><i
+                                            data-content="These are subdomains or A records you've created for your domain. If you require more than one hostname, separate with a space. "><i
                                                 class="fal fa-question-circle"></i></a>
                                         authorized to
                                         deliver or relay mail for
@@ -160,11 +165,9 @@
             </div>
             <div class="built-by">
                 <div class="built-by__background">
-                    <div class="built-by__text">
-                        <p>Built with love<br>
-                            by <a href="https://constellix.com">Constellix</a><br>
-                        </p>
-                    </div>
+                    <p class="built-by__text">Built with love<br>
+                        by <a href="https://constellix.com">Constellix</a><br>
+                    </p>
                 </div>
             </div>
             <div class="row">

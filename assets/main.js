@@ -7,10 +7,6 @@ $(document).ready(() => {
     const form = $("#form__spf-wizard");
     const inputs = 'input[name=MXServers], input[name=IPAddress], input[name=hostnames], input[name=strict]';
 
-    $('a').on('click', (e) => {
-        e.preventDefault();
-        return true;
-    });
 
     //make answer sticky
     // let answerWrapper = $('.input__answer__wrapper');
@@ -92,6 +88,7 @@ $(document).ready(() => {
 
         let inputAnswers = [
             // yourDomain,
+            // " ",
             'v=spf1 ',
             MXServers,
             IPAddress,
